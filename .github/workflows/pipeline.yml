@@ -40,8 +40,7 @@ jobs:
           wait-on: http://localhost:5000
 
       - name: Deploy
-        # Only run this step if the branch is main
-        if: github.ref == 'refs/heads/main'
+        if: ${{ github.event_name == 'push' }}
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
